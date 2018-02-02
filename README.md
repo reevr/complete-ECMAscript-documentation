@@ -911,7 +911,7 @@ better string handling, in addition to the core language standardized in the fir
 These features and others, such as try/catch exception handling and better internationalization facilities, are were
 documented in anticipation of the third edition of the standard about the end of 1999 which would contain the actual second version of the language.
 
-#ECMAscript 3 
+# ECMAscript 3 
 ### The third edition of the Standard and includes powerful regular expressions, better string handling, new control statements, try/catch exception handling, tighter definition of errors, formatting for numeric output and minor changes.
 
 ## Addition of Object Initializer.
