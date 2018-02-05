@@ -125,29 +125,36 @@ x += 5;
 
 ### ==	equal to : Used for comparison of expression
 ` a == b`
+
 ` 5 == 6`
 
 ### !=	not equal : Used to check for unequality
 ` a != b`
+
 ` 5 != 6`
 
 
 ### >	greater than : Compares if one expression in left is greater than the one in right hand side.
 ` a > b`
+
 ` 5 > 6`
 
 ### <	less than : Compares if one expression in left is lesser than the one in right hand side.
 ` a < b`
+
 ` 5 < 6`
 
 ### >=	greater than or equal to : Compares if one expression in left is greater than or equal to the one in right hand side.
 ` a >= b`
+
 ` 5 >= 6`
 ### <=	less than or equal to : Compares if one expression in left is lesser than or equal to the one in right hand side.
 ` a <= b`
+
 ` 5 <= 6`
 ### ?	ternary operator : Checks if a condition matches and returns different value for result of condition.
 ` a == b ? true: false`
+
 ` 5 > 6 ? 6 : 5`
 ## Logical operators 
 ### &&	logical and : Does a logical AND operation
@@ -156,8 +163,6 @@ x += 5;
 `if (a == b || b ==c) {} `
 ### !	logical not  : Does a logical NOT operation
 `if (!a == b) {} `
-
-
 
 
 ## Bitwise Operators 
@@ -277,6 +282,8 @@ A string value is a member of the type String and is the set of all finite order
 ###  String type
 The type String is the set of all finite ordered sequences of zero or more Unicode characters
 `var x = "John Doe";`
+
+
 ### String object
 A string object is a member of the type Object and is an instance of the String object which is a constructor. That
 is, a string object is created by using the String constructor in a new expression, supplying a string as an
@@ -614,12 +621,15 @@ var car2 = "Volvo";
 var car3 = "BMW";
 ```
 The above would be like this ,when made to an array : 
+
 ` var cars = new Array("Saab", "Volvo", "BMW");`
 
 Accessing the elements of array can be like this : 
+
 ` var name = cars[0]; `
 
 To access full array : 
+
 ` var carList = cars; `
 
 ### Array Methods 
@@ -648,7 +658,8 @@ fruits.sort();            // Sorts the elements of fruits
 The reverse() method reverses the elements in an array.
 You can use it to sort an array in descending order.
 
-``` var fruits = ["Banana", "Orange", "Apple", "Mango"];
+```
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.sort();            // Sorts the elements of fruits 
 fruits.reverse();         // Reverses the order of the elements
 ```
@@ -803,11 +814,13 @@ Syntax :
 ```
 for (index in object/array) { array[index] }
 ```
-Example : ```
+Example : 
+```
 var a = [1,2,3];
 for (var i in a) {
 c = a[i];
-}```
+}
+```
 
 
 ## Break and Continue statements 
