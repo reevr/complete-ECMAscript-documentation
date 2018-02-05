@@ -662,6 +662,7 @@ You can use it to sort an array in descending order.
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.sort();            // Sorts the elements of fruits 
 fruits.reverse();         // Reverses the order of the elements
+
 ```
 
 ## Boolean Values
@@ -2471,6 +2472,220 @@ console.log(a === Math.pow(7,12)) // true
 console.log(b === Math.pow(2,7)) // true
 ```
 
+# ECMAscript 8
+ECMAscript 8 was introduced in june 2017 , which came up with many new faetures unlike ECMAscript7 which had only two new features.
+
+Features in ECMAscript 8 includes following  : 
+
+## String Padding.
+These functions adds padding to the beginning and ending of the string. You can pad it with specific charecter , string or even empty spaces.
+
+For these there are two functions : 
+### padStart() 
+This function is used to pad string at the beginning.
+First parameter is the targetLength , which is the actual length of the output string.
+Second parameter is the string to be padded in to the beggining.
+```
+'es8'.padStart(2);          // 'es8'
+'es8'.padStart(5);          // '  es8'
+'es8'.padStart(6, 'woof');  // 'wooes8'
+'es8'.padStart(14, 'wow');  // 'wowwowwowwoes8'
+'es8'.padStart(7, '0');     // '0000es8'
+```
+* As you can see in the first example , it doesn't add any padding because the mentioned target length is less than the actual length of the string.
+* Second example gets two empty spaces added as the target length is 5and the length of string is 3.
+* Third example 'woo' added to the string at the beginning, only first three characters were added because the target length was 6 and actual length of the string was 3.
+
+### padEnd()
+This function is used to pad string at the end.
+First parameter is the targetLength , which is the actual length of the output string.
+Second parameter is the string to be padded in to the end.
+
+```
+'es8’.padEnd(2);          // 'es8'
+'es8’.padEnd(5);          // 'es8  '
+'es8’.padEnd(6, 'woof’);  // 'es8woo'
+'es8’.padEnd(14, 'wow’);  // 'es8wowwowwowwo'
+'es8’.padEnd(7, '6’);     // 'es86666'
+```
+* As you can see in the first example , it doesn't add any padding because the mentioned target length is less than the actual length of the string.
+* Second example gets two empty spaces added as the target length is 5and the length of string is 3.
+* Third example 'woo' added to the string at the beginning, only first three characters were added because the target length was 6 and actual length of the string was 3.
+
+## Object.values and Object.entries
+### Object.values();
+The Object.values method returns an array of a given object’s own enumerable property values, in the same order as that provided by a for in loop.
+` Object.values(obj) `
+
+```
+var obj = {a: 'one', b: 'two'};
+console.log(Object.values(obj)); // ['one','two']
+```
+
+```
+const obj = { x: 'xxx', y: 1 };
+Object.values(obj); // ['xxx', 1]
+
+const obj = ['e', 's', '8']; // same as { 0: 'e', 1: 's', 2: '8' };
+Object.values(obj); // ['e', 's', '8']
+
+// when we use numeric keys, the values returned in a numerical 
+// order according to the keys
+const obj = { 10: 'xxx', 1: 'yyy', 3: 'zzz' };
+Object.values(obj); // ['yyy', 'zzz', 'xxx']
+Object.values('es8'); // ['e', 's', '8']
+```
+
+### Object.entries
+
+The Object.entries method returns an array of a given object's own enumerable property [key, value] pairs, in the same order as Object.values.
+
+```
+const obj = { x: 'xxx’, y: 1 };
+Object.entries(obj); // [[’x’, 'xxx’], [’y’, 1]]
+
+const obj = [’e’, 's’, '8’];
+Object.entries(obj); // [[’0’, 'e’], [’1’, 's’], [’2’, '8’]]
+
+const obj = { 10: 'xxx’, 1: 'yyy’, 3: 'zzz' };
+Object.entries(obj); // [[’1’, 'yyy’], [’3’, 'zzz’], [’10’, 'xxx’]]
+Object.entries('es8'); // [['0', 'e'], ['1', 's'], ['2', '8']]
+```
+### Object.getOwnPropertyDescriptors()
+The getOwnPropertyDescriptors method returns all of the own properties descriptors of the specified object. An own property descriptor is one that is defined directly on the object and is not inherited from the object’s prototype. 
+
+` Object.getOwnPropertyDescriptors(obj) `
+
+```
+const obj = { 
+  get es7() { return 777; },
+  get es8() { return 888; }
+};
+Object.getOwnPropertyDescriptors(obj);
+// {
+//   es7: {
+//     configurable: true,
+//     enumerable: true,
+//     get: function es7(){}, //the getter function
+//     set: undefined
+//   },
+//   es8: {
+//     configurable: true,
+//     enumerable: true,
+//     get: function es8(){}, //the getter function
+//     set: undefined
+//   }
+// }
+```
+
+## Trailing commas in function parameter lists and calls
+Trailing commas in function parameter is the ability of the compiler not to raise an error (syntax) when we add an unnecessary comma in the end of the list.
+```
+function abc(a,b,c,) {
+    ......
+}
+``` 
+
+This is also possible in function calls : 
+` es8(10, 20, 30,); `
+
+## Async functions
+The async function declaration defines an asynchronous function, which returns an AsyncFunction object. Internally, async functions work much like generators, but they are not translated to generator functions.
+
+```
+rns an AsyncFunction object. Internally, async functions work much like generators, but they are not translated to generator functions.
+function fetchTextByPromise() {
+  return new Promise(resolve => { 
+    setTimeout(() => { 
+      resolve("es8");
+    }, 2000);
+  });
+}
+async function sayHello() { 
+  const externalFetchedText = await fetchTextByPromise();
+  console.log(`Hello, ${externalFetchedText}`); // Hello, es8
+}
+sayHello();
+```
+
+Lets consider a case of a function returning a promise 
+```
+const getData = () => {
+    return new Promise( (resolve, reject) => {
+        // resolve after 3 second timeout.
+        setTimeout(() => resolve({ key: new Date().getTime()}), 3000 );
+    });
+}
+
+async function processData() {
+    // getData() function returns a promise. 
+    let data = await getData();
+    return { "details": data.key || 0 };
+}
+```
+In the function processData() the variable data will hold the value returned by the function  getData() as await keyword will wait until the value s recieved,and any type of modification can be made to the value and can be returned so that any other code can utilize it.
+This is one of the most usefull features ESCMAscript to have.
+
+## SharedArrayBuffer
+The SharedArrayBuffer object is used to represent a generic, fixed-length raw binary data buffer, similar to the ArrayBuffer object, but in a way that they can be used to create views on shared memory.
+```
+// create a SharedArrayBuffer with a size in bytes
+const buffer = new SharedArrayBuffer(8);
+
+console.log(buffer.byteLength);
+// expected output: 8
+
+```
+
+To share memory using SharedArrayBuffer objects from one agent in the cluster to another (an agent is either the web page’s main program or one of its web workers), postMessage and structured cloning is used.
+
+The structured clone algorithm accepts SharedArrayBuffers and TypedArrays mapped onto SharedArrayBuffers. In both cases, the SharedArrayBuffer object is transmitted to the receiver resulting in a new, private SharedArrayBuffer object in the receiving agent (just as for ArrayBuffer). However, the shared data block referenced by the two SharedArrayBuffer objects is the same data block, and a side effect to the block in one agent will eventually become visible in the other agent.
+```
+var sab = new SharedArrayBuffer(1024);
+worker.postMessage(sab);
+```
+
+## Atomics
+
+The Atomics object provides atomic operations as static methods. They are used with SharedArrayBuffer objects.
+
+The Atomic operations are installed on an Atomics module. Unlike the other global objects, Atomics is not a constructor. You cannot use it with a new operator or invoke the Atomics object as a function. All properties and methods of Atomics are static (as is the case with the Math object, for example).
+
+### Atomics methods
+When memory is shared, multiple threads can read and write the same data in memory. Atomic operations make sure that predictable values are written and read, that operations are finished before the next operation starts and that operations are not interrupted.
+
+##### Atomics.add()
+Adds a given value at a given position in the array. Returns the old value at that position.
+##### Atomics.and()
+Computes a bitwise AND at a given position in the array. Returns the old value at that position.
+##### Atomics.compareExchange()
+Stores a given value at a given position in the array, if it equals a given value. Returns the old value.
+##### Atomics.exchange()
+Stores a given value at a given position in the array. Returns the old value.
+##### Atomics.load()
+Returns the value at the given position in the array.
+##### Atomics.or()
+Computes a bitwise OR at a given position in the array. Returns the old value at that position.
+##### Atomics.store()
+Stores a given value at the given position in the array. Returns the value.
+##### Atomics.sub()
+Subtracts a given value at a given position in the array. Returns the old value at that position.
+##### Atomics.xor()
+Computes a bitwise XOR at a given position in the array. Returns the old value at that position.
+
+#### Wait and wake
+
+The wait() and wake() methods are modeled on Linux futexes ("fast user-space mutex") and provide ways for waiting until a certain condition becomes true and are typically used as blocking constructs.
+
+##### Atomics.wait()
+Verifies that a given position in the array still contains a given value and sleeps awaiting or times out. Returns either "ok", "not-equal", or "timed-out". If waiting is not allowed in the calling agent then it throws an Error exception (most browsers will not allow wait() on the browser's main thread).
+
+##### Atomics.wake()
+Wakes up some agents that are sleeping in the wait queue on the given array position. Returns the number of agents that were woken up.
+
+##### Atomics.isLockFree(size)
+An optimization primitive that can be used to determine whether to use locks or atomic operations. Returns true, if an atomic operation on arrays of the given element size will be implemented using a hardware atomic operation (as opposed to a lock). 
+
 # References : 
 *  https://www.ecma-international.org/publications/standards/Ecma-262-arch.htm
 *  https://codeburst.io/generators-in-ECMAscript-1a7f9f884439
@@ -2479,6 +2694,7 @@ console.log(b === Math.pow(2,7)) // true
 *  http://speakingjs.com/
 *  https://developer.mozilla.org/en-US/
 *  http://2ality.com
-*  www.w3schools.com
+*  http://www.w3schools.com
 *  https://ponyfoo.com/articles/
 *  https://codeburst.io/
+*  http://hackernoon.com
