@@ -164,7 +164,7 @@ x += 5;
 Operator |	Description |	Example |	Same as | Result	| Decimal
 ------------ | ------------- | ------------ | -------------|------------ | -------------
 & |	AND |	5 & 1 |	0101 & 0001 |	0001	| 1
-&#124;	| OR	| 5 &#124; 1 |	0101 &#124; 0001 |	0101	| 5
+ &#124;	| OR	| 5 &#124; 1 |	0101 &#124; 0001 |	0101	| 5
 ~	| NOT |	~ 5 |	 ~0101 |	1010	| 10
 ^	| XOR |	5 ^ 1 |	0101 ^ 0001 |	0100 | 4
 << |	Zero fill left shift |	5 << 1  |	0101 << 1 |	1010 | 10
@@ -738,7 +738,8 @@ Use else to specify a block of code to be executed, if the same condition is fal
 
 ### The If statement
 Use the if statement to specify a block of JavaScript code to be executed if a condition is true.
-Syntax : ```
+Syntax : 
+```
 if (condition) {
     block of code to be executed if the condition is true
 }
@@ -748,7 +749,9 @@ Example :
 ```
 if (hour < 18) {
     greeting = "Good day";
-}```
+}
+```
+
 
 ### The else Statement
 Use the else statement to specify a block of code to be executed if the condition is false.
@@ -1214,3 +1217,1194 @@ var res = patt.exec(str);
 }
  ```
 
+# ECMAscript 4 
+### This version of ECMAscript was abandoned , hence was never released.
+
+# ECMAscript 5
+#### In this version of ECMAscript few  new concepts were introduced in the prototypes of Objects and arrays as well as , many more.
+
+## Strict Mode 
+Strict mode is enabled using 'use strict' keyword in the beginning of program. 
+It is not a statement, but a literal expression, ignored by earlier versions of JavaScript.
+The purpose of "use strict" is to indicate that the code should be executed in "strict mode".
+With strict mode, you can not, for example, use undeclared variables.
+
+### Invalid code in STRICT MODE 
+```
+"use strict";
+x = 3.14;  // This will cause an error because x is not declared
+```
+
+```
+"use strict";
+myFunction();
+
+function myFunction() {
+    y = 3.14;   // This will also cause an error because y is not declared
+}
+```
+
+```
+x = 3.14;       // This will not cause an error. 
+myFunction();
+
+function myFunction() {
+   "use strict";
+    y = 3.14;   // This will cause an error
+}
+```
+
+###### Strict mode makes it easier to write "secure" JavaScript.
+As an example, in normal JavaScript, mistyping a variable name creates a new global variable. In strict mode, this will throw an error, making it impossible to accidentally create a global variable.
+In strict mode, any assignment to a non-writable property, a getter-only property, a non-existing property, a non-existing variable, or a non-existing object, will throw an error.
+
+```
+"use strict";
+x = {p1:10, p2:20};      // This will cause an error
+```
+
+Deleting a variable (or object) is not allowed.
+```
+"use strict";
+var x = 3.14;
+delete x; 
+```
+
+Deleting a function is not allowed
+```
+"use strict";
+function x(p1, p2) {}; 
+delete x;                // This will cause an error 
+```
+Duplicating a parameter name
+```
+"use strict";
+function x(p1, p1) {};   // This will cause an error
+```
+
+Octal numeric iterals are not allowed
+```
+"use strict";
+var x = 010;             // This will cause an error
+```
+
+Ocatal escape charecters are not allowed
+```
+"use strict";
+var x = "\010"; 
+```
+
+Writing to a read-only property is not allowed.
+```
+"use strict";
+var obj = {};
+Object.defineProperty(obj, "x", {value:0, writable:false});
+
+obj.x = 3.14;            // This will cause an error
+```
+
+Writing to a getter-only property is not allowed
+```
+"use strict";
+var obj = {get x() {return 0} };
+
+obj.x = 3.14;            // This will cause an error
+```
+
+Deleting an undeletable property is not allowed.
+"use strict";
+delete Object.prototype; // This will cause an error
+
+The string "eval" cannot be used as a variable.
+"use strict";
+var eval = 3.14;         // This will cause an error
+
+The string "arguments" cannot be used as a variable:
+```
+"use strict";
+var arguments = 3.14;    // This will cause an error
+```
+with statement is not allowed.
+```
+"use strict";
+with (Math){x = cos(2)}; // This will cause an error
+```
+For security reasons, eval() is not allowed to create variables in the scope from which it was called.
+```
+"use strict";
+eval ("var x = 2");
+alert (x);               // This will cause an error
+```
+Future reserved keywords are not allowed in strict mode. These are:
+
+* implements
+* interface
+* let
+* package
+* private
+* protected
+* public
+* static
+* yield
+
+
+## Accessor Functions
+There are two types of .accessor functions: 
+* getter
+* setter
+
+Accessor function are used to allow developer manage what should happen when a object property is accessed and when object property is set.
+
+### Getter function 
+lets consider an example object : 
+```
+var user =  {
+    name : 'john',
+    age : 56,
+    get name2() {
+        return this.name.toUpperCase();
+    }
+}
+```
+So here when we try to access property of user -> `user.name2` it returns the value as 'JOHN'
+Hence the developer can decide what value must be returned when that particular property is accessed.
+Same property can be set using Setter functions.
+
+### Setter function
+Lets consider the above example with a setter function.
+```
+var user = {
+    name: 'john',
+    age: 56,
+    get: name2() {
+        return this.name.toUpperCase();
+    },
+    set: name2(newName) {
+        this.name = newName.toUpperCase();
+    }
+};
+```
+Here when we try to set the property of user -> `user.name2` it takes the value as parameter of set function and then executes the code inside it.
+
+### Researved words can be used as property keys
+The ECMAscript researved words can be used as property keys of object and also as nonqouted keys.
+
+```
+var a = {
+    new: 'new property',
+    age: 89
+};
+```
+
+### Legal trailing comas.
+The trailing commas are considered as legal, which means a comma used at te end of each property or value of an object or array with no values after it ,are considered legal.
+Example : 
+```
+var obj = {
+    a:1,
+    b:2,
+};
+```
+
+### Multiline string literals
+
+A string can be written in multi-lines by using back-slash '/' at the end of each line.
+
+var stn = 'first line /
+    second line/
+    third line';
+
+### Object.create()
+Object.create() function is used to create a object using a prototype object as first parameter and 
+a properties object as second parameters.
+Example : 
+```
+var userPrototype = {
+    age: 0,
+    fullname: function() {
+        return this.firstname + ' ' + this.lastname;
+    },
+    getLastname: function() {
+        return this.lastname;
+    }
+} 
+
+var jone = Object.create(userPrototype, {height: {value:'183'}});
+```
+### Object.getPrototypeOf()
+We can get the prototype of an object using Object.getPrototypeOf() function .
+An object is to passed to this function and it returs that objects prototype.
+Example : 
+```
+var userPrototype = {
+    age: 0,
+    fullname: function() {
+        return this.firstname + ' ' + this.lastname;
+    },
+    getLastname: function() {
+        return this.lastname;
+    }
+} 
+
+var jone = Object.create(userPrototype, {firstname: {value:'jone'}, lastname: {value: 'mathews'}});
+
+Object.getPrototypeOf(jone); // {age: 0, fullname: ƒ, getLastname: ƒ}
+
+```
+### Object.defineProperty()
+The Object.defineProperty() method defines a new property directly on an object, or modifies an existing property on an object, and returns the object.
+```
+const object1 = {};
+
+Object.defineProperty(object1, 'property1', {
+  value: 42,
+  writable: false
+});
+
+object1.property1 = 77;
+// throws an error in strict mode
+
+console.log(object1.property1);
+// expected output: 42
+
+```
+
+### Object.defineProperties()
+The Object.defineProperties() method defines new or modifies existing properties directly on an object, returning the object.
+```
+onst object1 = {};
+
+Object.defineProperties(object1, {
+  property1: {
+    value: 42,
+    writable: true
+  },
+  property2: {}
+});
+
+console.log(object1.property1);
+// expected output: 42
+```
+### Object.getOwnPropertyDescriptor()
+The Object.getOwnPropertyDescriptor() method returns a property descriptor for an own property (that is, one directly present on an object and not in the object's prototype chain) of a given object.
+
+```
+const object1 = {
+  property1: 42
+}
+
+const descriptor1 = Object.getOwnPropertyDescriptor(object1, 'property1');
+
+console.log(descriptor1.configurable);
+// expected output: true
+
+console.log(descriptor1.value);
+// expected output: 42
+
+```
+### Object.keys()
+The Object.keys() method returns an array of a given object's own enumerable properties, in the same order as that provided by a for...in loop (the difference being that a for-in loop enumerates properties in the prototype chain as well).
+This basically return an array containing keys of the object but doesn't include the non-enumerable properties.
+```
+var arr = ['a', 'b', 'c'];
+console.log(Object.keys(arr)); // console: ['0', '1', '2']
+
+// array like object
+var obj = { 0: 'a', 1: 'b', 2: 'c' };
+console.log(Object.keys(obj)); // console: ['0', '1', '2']
+```
+### Object.getOwnPropertyNames()
+Object.getOwnPropertyNames() does the same task as Object.keys() but it also returns the non-enumerable properties of an object.
+```
+const object1 = {
+  a: 1,
+  b: 2,
+  c: 3
+};
+
+console.log(Object.getOwnPropertyNames(object1));
+// expected output: Array ["a", "b", "c"]
+
+```
+### Object.preventExtensions()
+The Object.preventExtensions() method prevents new properties from ever being added to an object (i.e. prevents future extensions to the object).
+```
+const object1 = {};
+
+Object.preventExtensions(object1);
+
+try {
+  Object.defineProperty(object1, 'property1', {
+    value: 42
+  });
+} catch (e) {
+  console.log(e);
+  // Expected output: TypeError: Cannot define property property1, object is not extensible
+}
+```
+### Object.isExtensible()
+The Object.isExtensible() method determines if an object is extensible (whether it can have new properties added to it).
+```
+const object1 = {};
+
+console.log(Object.isExtensible(object1));
+// expected output: true
+
+Object.preventExtensions(object1);
+
+console.log(Object.isExtensible(object1));
+// expected output: false
+```
+
+### Object.seal()
+The Object.seal() method seals an object, preventing new properties from being added to it and marking all existing properties as non-configurable. Values of present properties can still be changed as long as they are writable.
+```
+const object1 = {
+  property1: 42
+};
+
+Object.seal(object1);
+object1.property1 = 33;
+console.log(object1.property1);
+// expected output: 33
+
+delete object1.property1; // cannot delete when sealed
+console.log(object1.property1);
+// expected output: 33
+```
+### Object.isSealed()
+The Object.isSealed() method determines if an object is sealed.
+```
+const object1 = {
+  property1: 42
+};
+
+console.log(Object.isSealed(object1));
+// expected output: false
+
+Object.seal(object1);
+
+console.log(Object.isSealed(object1));
+// expected output: true
+
+```
+### Object.freeze()
+The Object.freeze() method freezes an object: that is, prevents new properties from being added to it; prevents existing properties from being removed; and prevents existing properties, or their enumerability, configurability, or writability, from being changed, it also prevents the prototype from being changed.  The method returns the object in a frozen state.
+```
+const object1 = {
+  property1: 42
+};
+
+const object2 = Object.freeze(object1);
+
+object2.property1 = 33;
+// Throws an error in strict mode
+
+console.log(object2.property1);
+// expected output: 42
+```
+### Object.isFrozen()
+The Object.isFrozen() determines if an object is frozen.
+const object1 = {
+  property1: 42
+};
+
+console.log(Object.isFrozen(object1));
+// expected output: false
+
+Object.freeze(object1);
+
+console.log(Object.isFrozen(object1));
+// expected output: true
+
+
+### Function.bind()
+The bind() method creates a new function that, when called, has its this keyword set to the provided value and also passes arguments if provided while the function is being called.
+
+```
+var model = {
+    a:'name',
+    getValue: function() {
+        return this.a;
+    },
+    getArguments: function() {
+        console.log(this.a);
+        return arguments;
+    }
+}
+
+var newFunc = model.getArguments;
+newFunc(); //  undefined as it doesn't have any property 'a'.
+var anotherFunc = newFunc.bind(model,12,3,4);
+anotherFunc() // Same function returns arguments and also logs the value of propert 'a' in model. 
+```
+
+
+### Date.now() 
+The number of milliseconds between midnight, January 1, 1970, and the current date and time.
+```
+var start = Date.now();  
+var response = prompt("What is your name?", "");  
+var end = Date.now();  
+var elapsed = (end - start) / 1000;  
+```
+
+### Date.toISOString()
+The toISOString() method returns a string in simplified extended ISO format (ISO 8601), which is always 24 or 27 characters long (YYYY-MM-DDTHH:mm:ss.sssZ or ±YYYYYY-MM-DDTHH:mm:ss.sssZ, respectively). The timezone is always zero UTC offset, as denoted by the suffix "Z".
+
+```
+var event = new Date('05 October 2011 14:48 UTC');
+console.log(event.toString());
+// expected output: Wed Oct 05 2011 16:48:00 GMT+0200 (CEST)
+// (note: your timezone may vary)
+
+console.log(event.toISOString());
+// expected output: 2011-10-05T14:48:00.000Z
+```
+## JSON related functions
+### JSON.parse() 
+The JSON.parse() method parses a JSON string, constructing the JavaScript value or object described by the string. An optional reviver function can be provided to perform a transformation on the resulting object before it is returned.
+```
+var json = '{"result":true, "count":42}';
+obj = JSON.parse(json);
+
+console.log(obj.count);
+// expected output: 42
+
+console.log(obj.result);
+// expected output: true
+
+```
+
+```
+JSON.parse('{"p": 5}', (key, value) =>
+  typeof value === 'number'
+    ? value * 2 // return value * 2 for numbers
+    : value     // return everything else unchanged
+);
+
+// { p: 10 }
+```
+
+### JSON.stringify()
+The JSON.stringify() method converts a JavaScript value to a JSON string, optionally replacing values if a replacer function is specified, or optionally including only the specified properties if a replacer array is specified
+
+```
+console.log(JSON.stringify({ x: 5, y: 6 }));
+// expected output: "{"x":5,"y":6}"
+
+console.log(JSON.stringify([new Number(3), new String('false'), new Boolean(false)]));
+// expected output: "[3,"false",false]"
+
+console.log(JSON.stringify({ x: [10, undefined, function(){}, Symbol('')] }));
+// expected output: "{"x":[10,null,null,null]}"
+
+console.log(JSON.stringify(new Date(2006, 0, 2, 15, 4, 5)));
+// expected output: ""2006-01-02T15:04:05.000Z""
+```
+
+## Array Functions
+
+### Array.isArray()
+The isArray() method determines whether an object is an array.
+```
+var a = [1,2,3];
+console.log(Array.isArray(a)); // true
+```
+
+### Array.prototype.every()
+The every() method tests whether all elements in the array pass the test implemented by the provided function.
+```
+var a = [10,20,30];
+console.log(a.every(function(b) { return b > 10}));  // false
+console.log(a.every(function(b) { return b > 9}));  // true
+```
+
+### Array.prototype.filter() 
+The filter function iterates through each vlue in array and returns the ones which satifies the mentioned condition.
+```
+var arr = [1,2,3,40,35];
+var newArray = arr.filter(function(val) {
+    return val % 2 === 0; // condition :  values multiple of 2.
+});
+
+console.log(newArray); // [2,40] 
+```
+
+### Array.prototype.forEach()
+The forEach() function iterates through array value .
+
+Example : 
+```
+var arr = [1,2,3];
+arr.forEach(function(val) { console.log(val);}); // 1,2,3
+```
+
+### Array.prototype.indexOf()
+The indexOf() function is used to find the index of first occurence of specified value in an array.
+if the value doesn't exist in the array , the index returned will be -1;
+
+```
+var arr = [1,2,3];
+var index = arr.indexOf(2);
+console.log(index); // 1
+
+var index = arr.indexOf(8);
+console.log(index); // -1
+```
+
+### Array.prototype.lastIndexOf()
+The indexOf() function is used to find the index of first occurence of specified value in an array.
+if the value doesn't exist in the array , the index returned will be -1;
+
+```
+var arr = [1,2,3,2];
+var index = arr.lastIndexOf(2);
+console.log(index); // 3
+
+var index = arr.indexOf(8);
+console.log(index); // -1
+```
+
+### Array.prototype.map()
+The map() function iterates through the array and replaces the individual value in the array based on the returned value;
+
+```
+var arr = [1,2,3];
+arr.map(function(val) {
+    return val * val;  // replacing all values with its squares
+});
+console.log(arr); // [1,4,9]
+```
+
+### Array.prototype.reduce()
+The reduce() method applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value.
+```
+var arr = [1,2,3];
+var newArr = arr.reduce(function(accumulator, currentVal) {
+    return currentVal * accumulator;
+});
+
+console.log(newArr); // 6
+```
+
+### Array.prototype.some()
+The some() method tests whether at least one element in the array passes the test implemented by the provided function.
+
+```
+var arr = [1,2,3,4];
+console.log(arr.some(function(val) {
+    return val % 2 === 0; 
+}));            // true;
+
+```
+
+
+# ECMAscript 6  
+
+## Let and Const  
+let is method of declaring a variable with block level scope.
+```
+{
+    let a = 10;
+    console.log(a);  10
+    if (true)
+    {
+        let b = 12;
+        console.log(b);  // 12
+    }
+    console.log(b);  // undefined
+}
+```
+## Arrow Function
+An arrow function expression has a shorter syntax than a function expression and does not have its own this, arguments, super, or new.target. These function expressions are best suited for non-method functions, and they cannot be used as constructors.
+
+```
+var materials = [
+  'Hydrogen',
+  'Helium',
+  'Lithium',
+  'Beryllium'
+];
+
+console.log(materials.map(material => material.length));
+// expected output: Array [8, 6, 7, 9]
+
+```
+
+```
+var arr = [1,2,3];
+arr.forEach(() => console.log('hello'));
+```
+
+## Strings
+
+### Methods
+New methods introduced.
+
+`let a = 'my string';`
+
+a.startsWith('my');  // true
+a.endsWith('ing');  // true
+a.includes('str');  // true
+a.repeat(3); //  my string my string my string
+
+### Template Literals
+```
+let a = 'hello';
+let b =  'Hey ${a}'; // Hey hello
+```
+To print a variable inside a string, ${} can be used .This helps inn avoiding the usage of concatenation operator(+) and joining the variable and strings.
+
+Multiple lines of string can be displayed using the backtick (`) , without using the back slach(/) as mentioned in the ECMAscript 5.
+
+```
+let a = `First line 
+second line
+third line`;
+
+```
+
+## Arrays
+New Array methods are introduced , such as : 
+
+### Array.from()
+The Array.from() method creates a new Array instance from an array-like or iterable object.
+
+```
+console.log(Array.from('foo'));
+// expected output: Array ["f", "o", "o"]
+
+console.log(Array.from([1, 2, 3], x => x + x));
+// expected output: Array [2, 4, 6]
+```
+
+### Array.of()
+The Array.of() method creates a new Array instance with a variable number of arguments, regardless of number or type of the arguments.
+
+The difference between Array.of() and the Array constructor is in the handling of integer arguments: Array.of(7) creates an array with a single element, 7, whereas Array(7) creates an empty array with a length property of 7
+
+```
+Array.of(7);       // [7] 
+Array.of(1, 2, 3); // [1, 2, 3]
+
+Array(7);          // [ , , , , , , ]
+Array(1, 2, 3);    // [1, 2, 3]
+```
+
+### Array.find()
+The find() method returns the value of the first element in the array that satisfies the provided testing function. Otherwise undefined is returned.
+
+```
+var array1 = [5, 12, 8, 130, 44];
+
+var found = array1.find(function(element) {
+  return element > 10;
+});
+
+console.log(found);
+// expected output: 12
+```
+
+### Array.fill()
+The fill() method fills all the elements of an array from a start index to an end index with a static value.
+
+```
+var array1 = [1, 2, 3, 4];
+
+// fill with 0 from position 2 until position 4
+console.log(array1.fill(0, 2, 4));
+// expected output: [1, 2, 0, 0]
+
+// fill with 5 from position 1
+console.log(array1.fill(5, 1));
+// expected output: [1, 5, 5, 5]
+
+console.log(array1.fill(6));
+// expected output: [6, 6, 6, 6]
+```
+
+## Math
+### Math.sign() 
+The Math.sign() function returns the sign of a number, indicating whether the number is positive, negative or zero.
+```
+console.log(Math.sign(3));
+// expected output: 1
+
+console.log(Math.sign(-3));
+// expected output: -1
+
+console.log(Math.sign(0));
+// expected output: 0
+
+console.log(Math.sign('-3'));
+// expected output: -1
+```
+
+### Math.trunc()
+The Math.trunc() function returns the integer part of a number by removing any fractional digits.
+```
+console.log(Math.trunc(13.37));
+// expected output: 13
+
+console.log(Math.trunc(42.84));
+// expected output: 42
+
+console.log(Math.trunc(0.123));
+// expected output: 0
+
+console.log(Math.trunc(-0.123));
+// expected output: 0
+```
+### Math.cbrt()
+The Math.cbrt() function returns the cube root of a number.
+
+```
+console.log(Math.cbrt(-1));
+// expected output: -1
+
+console.log(Math.cbrt(1));
+// expected output: 1
+
+console.log(Math.cbrt(Infinity));
+// expected output: Infinity
+
+console.log(Math.cbrt(64));
+// expected output: 4
+```
+
+## Spread Operator
+Spread syntax allows an iterable such as an array expression or string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected, or an object expression to be expanded in places where zero or more key-value pairs (for object literals) are expected.
+
+```
+function sum(x, y, z) {
+  return x + y + z;
+}
+
+const numbers = [1, 2, 3];
+
+console.log(sum(...numbers));
+// expected output: 6
+
+console.log(sum.apply(null, numbers));
+// expected output: 6
+```
+## Destructuring
+The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+```
+var a, b, rest;
+[a, b] = [10, 20];
+
+console.log(a);
+// expected output: 10
+
+console.log(b);
+// expected output: 20
+
+[a, b, ...rest] = [10, 20, 30, 40, 50];
+
+console.log(rest);
+// expected output: [30,40,50]
+```
+
+## Default parameters
+Default parameters  can be used in the function , for if any parameters are not passed.
+```
+function f(x, y=12) {
+  // y is 12 if not passed (or passed as undefined)
+  return x + y;
+}
+console.log(f(3) == 15) // true
+```
+
+## Rest parameters
+The rest parameter syntax allows us to represent an indefinite number of arguments as an array.
+```
+function sum(...theArgs) {
+  return theArgs.reduce((previous, current) => {
+    return previous + current;
+  });
+}
+
+console.log(sum(1, 2, 3));
+// expected output: 6
+
+console.log(sum(1, 2, 3, 4));
+// expected output: 10
+```
+
+### Using spread operator in passing parameters
+Values can be passed to an array using the spread operator as well.
+```
+function sum(a , b, c) {
+    console.log(a + b + c);
+}
+let a = [1,2];
+sum(3, ...a);   // 6
+```
+
+## Class
+ES6 classes are a simple sugar over the prototype-based OO pattern. Having a single convenient declarative form makes class patterns easier to use, and encourages interoperability. Classes support prototype-based inheritance, super calls, instance and static methods and constructors.
+
+```
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
+```
+
+An important difference between function declarations and class declarations is that function declarations are hoisted and class declarations are not. You first need to declare your class and then access it, otherwise code like the following will throw a ReferenceError
+```
+var p = new Rectangle(); // ReferenceError
+
+class Rectangle {}
+```
+A class expression is another way to define a class. Class expressions can be named or unnamed. The name given to a named class expression is local to the class's body. (it can be retrieved through the class's (not an instance's) .name property, though)
+
+```
+// unnamed
+var Rectangle = class {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+};
+
+// named
+var Rectangle = class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+};
+```
+
+```
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  // Getter
+  get area() {
+    return this.calcArea();
+  }
+  // Method
+  calcArea() {
+    return this.height * this.width;
+  }
+}
+
+const square = new Rectangle(10, 10);
+
+console.log(square.area); // 100
+```
+###### The extends keyword is used in class declarations or class expressions to create a class as a child of another class.
+
+```
+class Animal { 
+  constructor(name) {
+    this.name = name;
+  }
+  
+  speak() {
+    console.log(this.name + ' makes a noise.');
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    console.log(this.name + ' barks.');
+  }
+}
+
+var d = new Dog('Mitzie');
+d.speak(); // Mitzie barks.
+```
+#### super() and super keyword.
+super() is used to call the constructor of the super class. It can be called inside the constructor of the subclass.
+
+```
+class mainClass {
+    constructor(name) {
+        this.name = name;
+    }
+    
+    printName() {
+        console.og(this.name);
+    }
+}
+
+class subClass extends mainClass {
+    constructor() {
+        super(prompt('Enter Name'));    
+        this.age = prompt('enter age');
+        super.printName(); // prints the name
+    }
+    printDetails(){
+        console.log(this.name + ' ' + this.age);
+    }
+}
+```
+super key word can be used to call the function taht belongs to the mainClass.
+
+## Generators
+Generators are special types of functions in the sense that unlike a traditional function generators produce multiple values on a per request basis while suspending their execution between these requests.
+The function*and yield keywords are unique to a generator. Generators are defined by adding an * at the end of a function keyword. This enables us to use the yield keyword within the body of the generator to produce values on request.
+
+```
+function* idMaker() {
+  var index = 0;
+  while(true)
+    yield index++;
+}
+
+var gen = idMaker();
+
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+
+```
+```
+let name,age;
+
+function* getDetails() {
+    yield prompt('Enter Name');
+    yield prompt('Enter Age');
+}
+let gen = getDetails();
+name = gen.next().value;
+age = gen.next().value;
+```
+
+## Modules 
+We can import classes and functions from exported modules.
+Lets consder a file : 'name.js'
+```
+export class name {
+    constructor() {
+        this.name = '';
+    }
+    getName() {
+        this.name = prompt('enter name');
+    }
+}
+
+export function printHello() {
+    console.log('Hello');
+}
+```
+Now we import class name from 'name.js'.
+```
+import { name } from './name';
+
+....
+....
+....
+
+```
+
+## Unicode
+Non-breaking additions to support full Unicode, including new Unicode literal form in strings and new RegExp u mode to handle code points, as well as new APIs to process strings at the 21bit code points level. These additions support building global apps in JavaScript.
+
+```
+// same as ES5.1
+"𠮷".length == 2
+
+// new RegExp behaviour, opt-in ‘u’
+"𠮷".match(/./u)[0].length == 2
+
+// new form
+"\u{20BB7}"=="𠮷"=="\uD842\uDFB7"
+
+// new String ops
+"𠮷".codePointAt(0) == 0x20BB7
+
+// for-of iterates code points
+for(var c of "𠮷") {
+  console.log(c);
+}
+```
+
+## Symbols 
+Symbols is the new data type in ECMAscript. Symbols has a function called symbol(), which generates a unique identifier.
+The Symbol() function returns a value of type symbol, has static properties that expose several members of built-in objects, has static methods that expose the global symbol registry, and resembles a built-in object class but is incomplete as a constructor because it does not support the syntax "new Symbol()".  
+
+```
+const symbol1 = Symbol();
+const symbol2 = Symbol(42);
+const symbol3 = Symbol('foo');
+
+console.log(typeof symbol1);
+// expected output: "symbol"
+
+console.log(symbol3.toString());
+// expected output: "Symbol(foo)"
+
+console.log(Symbol('foo') === Symbol('foo'));
+// expected output: false
+```
+
+Symbols are not visible to iterations such as Object.keys(), for...in etc and also Object.getOwnPropertyNames().
+Symbols can be viewd by using , Object.getOwnPropertySymbols().
+```
+class User {
+    constructor() {
+        this.id = Symbol('id');
+        this.internalDetails[this.id] = { 'token': Symbol('token')};
+    }
+}
+```
+
+## Proxy
+Proxy can be used to act as a inter-worker or a filterer between the accessor and the target object.
+lets take an example : 
+```
+let target = {};
+var p = new Proxy(target, handler);
+function handler() {
+    get: function(target,key){
+        if (key === 'firstKey') {
+            return target[key];
+        } else return false;
+    },
+    set : function(target, key, value, reciever) {
+        if (key === 'password') {
+            if (value.length > 0 && value.length < 7) {
+                target[key] = value;
+            }
+        } target[key] = value;
+    }
+}   // This returns value only if the key is 'firstKey' when user tries to access a value.
+/* 
+When we set a value to the object , it usually set the value for certain key except for a key called password, where it will check if the length of the value being set is greater than 0 and also less than 7.If the condition is true then it works or else it will not be set.
+*/
+```
+
+## Map
+The Map object holds key-value pairs. Any value (both objects and primitive values) may be used as either a key or a value.
+```
+var myMap = new Map();
+
+var keyString = 'a string',
+    keyObj = {},
+    keyFunc = function() {};
+
+// setting the values
+myMap.set(keyString, "value associated with 'a string'");
+myMap.set(keyObj, 'value associated with keyObj');
+myMap.set(keyFunc, 'value associated with keyFunc');
+
+myMap.size; // 3
+
+// getting the values
+myMap.get(keyString);    // "value associated with 'a string'"
+myMap.get(keyObj);       // "value associated with keyObj"
+myMap.get(keyFunc);      // "value associated with keyFunc"
+
+myMap.get('a string');   // "value associated with 'a string'"
+                         // because keyString === 'a string'
+myMap.get({});           // undefined, because keyObj !== {}
+myMap.get(function() {}) // undefined, because keyFunc !== function () {}
+```
+
+## WeakMap
+The WeakMap object is a collection of key/value pairs in which the keys are weakly referenced.  The keys must be objects and the values can be arbitrary values.
+
+```
+var wm1 = new WeakMap(),
+    wm2 = new WeakMap(),
+    wm3 = new WeakMap();
+var o1 = {},
+    o2 = function() {},
+    o3 = window;
+
+wm1.set(o1, 37);
+wm1.set(o2, 'azerty');
+wm2.set(o1, o2); // a value can be anything, including an object or a function
+wm2.set(o3, undefined);
+wm2.set(wm1, wm2); // keys and values can be any objects. Even WeakMaps!
+
+wm1.get(o2); // "azerty"
+wm2.get(o2); // undefined, because there is no key for o2 on wm2
+wm2.get(o3); // undefined, because that is the set value
+
+wm1.has(o2); // true
+wm2.has(o2); // false
+wm2.has(o3); // true (even if the value itself is 'undefined')
+
+wm3.set(o1, 37);
+wm3.get(o1); // 37
+
+wm1.has(o1); // true
+wm1.delete(o1);
+wm1.has(o1); // false
+```
+
+## Set 
+The Set object lets you store unique values of any type, whether primitive values or object references.
+```
+var mySet = new Set();
+
+mySet.add(1); // Set [ 1 ]
+mySet.add(5); // Set [ 1, 5 ]
+mySet.add(5); // Set [ 1, 5 ]
+mySet.add('some text'); // Set [ 1, 5, 'some text' ]
+var o = {a: 1, b: 2};
+mySet.add(o);
+
+mySet.add({a: 1, b: 2}); // o is referencing a different object so this is okay
+
+mySet.has(1); // true
+mySet.has(3); // false, 3 has not been added to the set
+mySet.has(5);              // true
+mySet.has(Math.sqrt(25));  // true
+mySet.has('Some Text'.toLowerCase()); // true
+mySet.has(o); // true
+
+mySet.size; // 5
+
+mySet.delete(5); // removes 5 from the set
+mySet.has(5);    // false, 5 has been removed
+
+mySet.size; // 4, we just removed one value
+console.log(mySet);// Set [ 1, "some text", Object {a: 1, b: 2}, Object {a: 1, b: 2} ]
+```
+
+## WeakSet
+WeakSet objects are collections of objects. An object in the WeakSet may only occur once; it is unique in the WeakSet's collection.
+
+The main differences to the Set object are:
+
+* In contrast to Sets, WeakSets are collections of objects only and not of arbitrary values of any type.
+* The WeakSet is weak: References to objects in the collection are held weakly. If there is no other reference to an object stored in the WeakSet, they can be garbage collected. That also means that there is no list of current objects stored in the collection. WeakSets are not enumerable.
+
+```
+var ws = new WeakSet();
+var obj = {};
+var foo = {};
+
+ws.add(window);
+ws.add(obj);
+
+ws.has(window); // true
+ws.has(foo);    // false, foo has not been added to the set
+
+ws.delete(window); // removes window from the set
+ws.has(window);    // false, window has been removed
+```
+
+# References : 
+*  https://www.ecma-international.org/publications/standards/Ecma-262-arch.htm
+*  https://codeburst.io/generators-in-javascript-1a7f9f884439
+*  http://www.benmvp.com/learning-es6-history-of-ecmascript/
+*  https://github.com/lukehoban/es6features#subclassable-built-ins
+*  http://speakingjs.com/
+*  https://developer.mozilla.org/en-US/
+*  http://2ality.com
+*  www.w3schools.com
+*  https://ponyfoo.com/articles/
+*  https://codeburst.io/
