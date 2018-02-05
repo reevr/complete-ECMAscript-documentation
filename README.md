@@ -2412,6 +2412,64 @@ ws.delete(window); // removes window from the set
 ws.has(window);    // false, window has been removed
 ```
 
+# ECMAscript 7
+This verison of ECMAscript was introduced a year after the previous version was introdced, so only two features were added.
+
+## Array.prototype.includes
+This function returns true if the specified value is available inside the array.
+
+```
+var array1 = [1, 2, 3];
+
+console.log(array1.includes(2));
+// expected output: true
+
+var pets = ['cat', 'dog', 'bat'];
+
+console.log(pets.includes('cat'));
+// expected output: true
+
+console.log(pets.includes('at'));
+// expected output: false
+
+```
+```
+var a = ['raj','akshay','john','raheel'];
+var name;
+if (a.includes(name = prompt('Enter your name'))) {
+    console.log(`hello ${name} , how are you?`); /* works if name specified value is available in array */
+} else console.log(`Welcome.`); // executes when name specified is not in array.
+```
+### fromIndex is optional second parameter
+
+```
+var pets = ['cat', 'dog', 'bat'];
+
+console.log(pets.includes('bat',3));
+// expected output: false
+
+console.log(pets.includes('bat',2));
+// expected output: true
+```
+
+
+## Exponential Operator
+This feature is represented with '**'. Exponential operator can be used to get the output which was represented using `Math.pow()`.
+
+```
+let a = 2**3; 
+console.log(a); // 8
+
+let b = 4**3; // 64
+```
+
+```
+let a = 7 ** 12
+let b = 2 ** 7
+console.log(a === Math.pow(7,12)) // true
+console.log(b === Math.pow(2,7)) // true
+```
+
 # References : 
 *  https://www.ecma-international.org/publications/standards/Ecma-262-arch.htm
 *  https://codeburst.io/generators-in-ECMAscript-1a7f9f884439
