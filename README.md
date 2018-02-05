@@ -2440,7 +2440,8 @@ if (a.includes(name = prompt('Enter your name'))) {
     console.log(`hello ${name} , how are you?`); /* works if name specified value is available in array */
 } else console.log(`Welcome.`); // executes when name specified is not in array.
 ```
-### fromIndex is optional second parameter
+### fromIndex is an optional second parameter in Array.prototype.includes()
+This mentions that the value to be checked using Array.prototype.includes() must be after the specified index.
 
 ```
 var pets = ['cat', 'dog', 'bat'];
