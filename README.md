@@ -737,7 +737,7 @@ Use if to specify a block of code to be executed, if a specified condition is tr
 Use else to specify a block of code to be executed, if the same condition is false.
 
 ### The If statement
-Use the if statement to specify a block of JavaScript code to be executed if a condition is true.
+Use the if statement to specify a block of ECMAscript code to be executed if a condition is true.
 Syntax : 
 ```
 if (condition) {
@@ -857,7 +857,7 @@ If (a == 1) {
 }
 ```
 ## The constructor Property
-The constructor property returns the constructor function for all JavaScript variables.
+The constructor property returns the constructor function for all ECMAscript variables.
 ```
 "John".constructor                // Returns function String()  {[native code]}
 (3.14).constructor                // Returns function Number()  {[native code]}
@@ -869,7 +869,7 @@ function () {}.constructor        // Returns function Function(){[native code]}
 Try it Yourself »
 ```
 
-## JavaScript Bitwise Operators 
+## ECMAscript Bitwise Operators 
 
 Operator | Name |	Description
 ------- | ------ | -----------
@@ -1225,7 +1225,7 @@ var res = patt.exec(str);
 
 ## Strict Mode 
 Strict mode is enabled using 'use strict' keyword in the beginning of program. 
-It is not a statement, but a literal expression, ignored by earlier versions of JavaScript.
+It is not a statement, but a literal expression, ignored by earlier versions of ECMAscript.
 The purpose of "use strict" is to indicate that the code should be executed in "strict mode".
 With strict mode, you can not, for example, use undeclared variables.
 
@@ -1254,8 +1254,8 @@ function myFunction() {
 }
 ```
 
-###### Strict mode makes it easier to write "secure" JavaScript.
-As an example, in normal JavaScript, mistyping a variable name creates a new global variable. In strict mode, this will throw an error, making it impossible to accidentally create a global variable.
+###### Strict mode makes it easier to write "secure" ECMAscript.
+As an example, in normal ECMAscript, mistyping a variable name creates a new global variable. In strict mode, this will throw an error, making it impossible to accidentally create a global variable.
 In strict mode, any assignment to a non-writable property, a getter-only property, a non-existing property, a non-existing variable, or a non-existing object, will throw an error.
 
 ```
@@ -1663,7 +1663,7 @@ console.log(event.toISOString());
 ```
 ## JSON related functions
 ### JSON.parse() 
-The JSON.parse() method parses a JSON string, constructing the JavaScript value or object described by the string. An optional reviver function can be provided to perform a transformation on the resulting object before it is returned.
+The JSON.parse() method parses a JSON string, constructing the ECMAscript value or object described by the string. An optional reviver function can be provided to perform a transformation on the resulting object before it is returned.
 ```
 var json = '{"result":true, "count":42}';
 obj = JSON.parse(json);
@@ -1687,7 +1687,7 @@ JSON.parse('{"p": 5}', (key, value) =>
 ```
 
 ### JSON.stringify()
-The JSON.stringify() method converts a JavaScript value to a JSON string, optionally replacing values if a replacer function is specified, or optionally including only the specified properties if a replacer array is specified
+The JSON.stringify() method converts a ECMAscript value to a JSON string, optionally replacing values if a replacer function is specified, or optionally including only the specified properties if a replacer array is specified
 
 ```
 console.log(JSON.stringify({ x: 5, y: 6 }));
@@ -1990,7 +1990,7 @@ console.log(sum.apply(null, numbers));
 // expected output: 6
 ```
 ## Destructuring
-The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+The destructuring assignment syntax is a ECMAscript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
 ```
 var a, b, rest;
 [a, b] = [10, 20];
@@ -2208,7 +2208,7 @@ import { name } from './name';
 ```
 
 ## Unicode
-Non-breaking additions to support full Unicode, including new Unicode literal form in strings and new RegExp u mode to handle code points, as well as new APIs to process strings at the 21bit code points level. These additions support building global apps in JavaScript.
+Non-breaking additions to support full Unicode, including new Unicode literal form in strings and new RegExp u mode to handle code points, as well as new APIs to process strings at the 21bit code points level. These additions support building global apps in ECMAscript.
 
 ```
 // same as ES5.1
@@ -2399,7 +2399,7 @@ ws.has(window);    // false, window has been removed
 
 # References : 
 *  https://www.ecma-international.org/publications/standards/Ecma-262-arch.htm
-*  https://codeburst.io/generators-in-javascript-1a7f9f884439
+*  https://codeburst.io/generators-in-ECMAscript-1a7f9f884439
 *  http://www.benmvp.com/learning-es6-history-of-ecmascript/
 *  https://github.com/lukehoban/es6features#subclassable-built-ins
 *  http://speakingjs.com/
