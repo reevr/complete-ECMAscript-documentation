@@ -75,12 +75,14 @@ var a;
 ### Assignment Operator : The assignment operator (=) assigns a value to a variable.
 `var x = 10;` 
 ### Addition Operator : The addition operator (+) adds numbers.
-``` var x = 5;
+``` 
+var x = 5;
 var y = 2;
 var z = x + y;
 ```
 ### Subtraction Operator : The subtraction operator (-) subtracts numbers.
-``` var x = 5;
+```
+var x = 5;
 var y = 2;
 var z = x - y;
 ```
@@ -166,15 +168,16 @@ x += 5;
 
 
 ## Bitwise Operators 
-Operator |	Description |	Example |	Same as | Result	| Decimal
------------- | ------------- | ------------ | -------------|------------ | -------------
-& |	AND |	5 & 1 |	0101 & 0001 |	0001	| 1
- &#124;	| OR	| 5 &#124; 1 |	0101 &#124; 0001 |	0101	| 5
-~	| NOT |	~ 5 |	 ~0101 |	1010	| 10
-^	| XOR |	5 ^ 1 |	0101 ^ 0001 |	0100 | 4
-<< |	Zero fill left shift |	5 << 1  |	0101 << 1 |	1010 | 10
-*>>* |	Signed right shift |	5 >> 1 |	0101 >> 1 |	0010	| 2
-*>>>* |	Zero fill right shift | 5 >>> 1 |	0101 >>> 1 |	0010	|  2
+
+ Operator |	Description |	Example |	Same as | Result	| Decimal  |
+---------- | ---------- | ---------- | ---------- | --------- | -------- |  
+ & |	AND |	5 & 1 |	0101 & 0001 |	0001	| 1 |
+ &#124;	| OR	| 5 &#124; 1 |	0101 &#124; 0001 |	0101	| 5 |
+ ~	| NOT |	~ 5 |	 ~0101 |	1010	| 10 |
+ ^	| XOR |	5 ^ 1 |	0101 ^ 0001 |	0100 | 4 |
+ << |	Zero fill left shift |	5 << 1  |	0101 << 1 |	1010 | 10 |
+ *>>* |	Signed right shift |	5 >> 1 |	0101 >> 1 |	0010	| 2 |
+ *>>>* |	Zero fill right shift | 5 >>> 1 |	0101 >>> 1 |	0010	|  2 |
 
 
 ## Data Types
@@ -192,15 +195,21 @@ You can reuse code: Define the code once, and use it many times.
 You can use the same code many times with different arguments, to produce different results.
 
 
-Syntax : ``` function name(parameter1, parameter2, parameter3) {
+Syntax : 
+``` 
+function name(parameter1, parameter2, parameter3) {
     code to be executed
-} ```
+} 
+``` 
 
-Example : ``` var x = myFunction(4, 3);    // Function is called, return value will end up in x
+Example : 
+``` 
+var x = myFunction(4, 3);    // Function is called, return value will end up in x
 
 function myFunction(a, b) {
     return a * b;            // Function returns the product of a and b
-}```
+}
+``` 
 
 ## Objects : 
 
@@ -212,7 +221,8 @@ constructors which create objects by executing code that allocates storage for t
 part of them by assigning initial values to their properties. 
 
 Example : 
-``` var x = new String();        // Declares x as a String object
+``` 
+var x = new String();        // Declares x as a String object
 var y = new Number();        // Declares y as a Number object
 var z = new Boolean();       // Declares z as a Boolean object
 ```
@@ -289,7 +299,8 @@ A string object is a member of the type Object and is an instance of the String 
 is, a string object is created by using the String constructor in a new expression, supplying a string as an
 argument. The resulting object has an implicit (unnamed) property which is the string. A string object can be
 coerced to a string value. A string object can be used anywhere a string value is expected.
-``` var x = "John";
+```
+var x = "John";
 var y = new String("John");
 ```
 ### String Methods and Properties
@@ -298,7 +309,8 @@ But with ECMAscript, methods and properties are also available to primitive valu
 
 #### String Length
 The length property returns the length of a string
-``` var txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+``` 
+var txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var sln = txt.length; 
 ``` 
 #### String indexOf()
