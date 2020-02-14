@@ -1,4 +1,4 @@
-# ECMAscript-overview documentation
+# Complete ECMAscript documentation
 A complete documentaion on the ECMAscript life cycle. 
 
 ###### ECMAscript is the standard followed by javascript.
